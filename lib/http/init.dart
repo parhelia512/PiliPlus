@@ -201,7 +201,7 @@ class Request {
     CancelToken? cancelToken,
   }) async {
     try {
-      return await dio.get<T>(
+      return dio.get<T>(
         url,
         queryParameters: queryParameters,
         options: options,
@@ -230,7 +230,7 @@ class Request {
   }) async {
     // if (kDebugMode) debugPrint('post-data: $data');
     try {
-      return await dio.post<T>(
+      return dio.post<T>(
         url,
         data: data,
         queryParameters: queryParameters,
@@ -258,7 +258,7 @@ class Request {
     CancelToken? cancelToken,
   }) async {
     try {
-      final response = await dio.download(
+      return dio.download(
         urlPath,
         savePath,
         cancelToken: cancelToken,
@@ -268,7 +268,6 @@ class Request {
         // },
       );
       // if (kDebugMode) debugPrint('downloadFile success: ${response.data}');
-      return response;
     } on DioException catch (e) {
       // if (kDebugMode) debugPrint('downloadFile error: $e');
       return Response(
